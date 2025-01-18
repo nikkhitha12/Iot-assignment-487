@@ -1,0 +1,91 @@
+{
+  "version": 1,
+  "author": "lakshman",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "wokwi-arduino-uno", "id": "uno", "top": -11.45, "left": 11.32, "attrs": {} },
+    { "type": "wokwi-ds1307", "id": "rtc1", "top": -9.88, "left": -95.45, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay1", "top": -111.56, "left": -120.69, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay3", "top": -112.96, "left": 43.38, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay4", "top": -120.71, "left": 375.4, "attrs": {} },
+    { "type": "wokwi-relay-module", "id": "relay5", "top": -119.12, "left": 209.24, "attrs": {} },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": -219.31,
+      "left": 176.04,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led3",
+      "top": -221.29,
+      "left": 493.62,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led4",
+      "top": -220.53,
+      "left": -15.23,
+      "attrs": { "color": "red" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led5",
+      "top": -230.57,
+      "left": 338.2,
+      "attrs": { "color": "red" }
+    },
+    { "type": "wokwi-gnd", "id": "gnd1", "top": -38.51, "left": 37.84, "attrs": {} },
+    { "type": "wokwi-gnd", "id": "gnd2", "top": -22.55, "left": -155.2, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc1", "top": -125.81, "left": -154.66, "attrs": {} },
+    { "type": "wokwi-vcc", "id": "vcc2", "top": -184.12, "left": 14.09, "attrs": {} },
+    {
+      "type": "wokwi-lcd2004",
+      "id": "lcd1",
+      "top": 19.48,
+      "left": 345.73,
+      "attrs": { "pins": "i2c" }
+    },
+    { "type": "wokwi-dht22", "id": "dht1", "top": -301.68, "left": -148.51, "attrs": {} }
+  ],
+  "connections": [
+    [ "rtc1:GND", "uno:GND.3", "black", [ "h-44.6", "v209.1", "h342" ] ],
+    [ "rtc1:SCL", "uno:A5", "green", [ "h-25.26", "v200.1", "h408" ] ],
+    [ "rtc1:SDA", "uno:A4", "green", [ "h-34.6", "v174.27", "h398" ] ],
+    [ "rtc1:5V", "uno:5V", "red", [ "h-39.93", "v192.44", "h325.33" ] ],
+    [ "vcc1:VCC", "relay1:VCC", "red", [ "v0" ] ],
+    [ "relay3:VCC", "relay1:VCC", "red", [ "h-5.22", "v-34.72", "h-167.64" ] ],
+    [ "relay5:VCC", "relay3:VCC", "red", [ "h-6.62", "v-32.8", "h-174" ] ],
+    [ "relay4:VCC", "relay5:VCC", "red", [ "h-11.51", "v-31.21", "h-162.33" ] ],
+    [ "led4:C", "gnd1:GND", "green", [ "v0" ] ],
+    [ "led1:C", "gnd1:GND", "green", [ "v0" ] ],
+    [ "led5:C", "led1:C", "green", [ "v31.25", "h-171.8" ] ],
+    [ "led3:C", "led5:C", "green", [ "v36.82", "h-174.44" ] ],
+    [ "relay1:COM", "vcc2:VCC", "black", [ "h0" ] ],
+    [ "relay3:COM", "vcc2:VCC", "black", [ "h20.84", "v-61.64", "h-1.06" ] ],
+    [ "relay5:COM", "vcc2:VCC", "black", [ "h17.31", "v-59.72", "h-329.97" ] ],
+    [ "relay4:COM", "vcc2:VCC", "black", [ "h25.15", "v-57.07", "h-508.21" ] ],
+    [ "led3:A", "relay4:NO", "green", [ "v3.93", "h17.15", "v11.67" ] ],
+    [ "led5:A", "relay5:NO", "green", [ "v0" ] ],
+    [ "led1:A", "relay3:NO", "green", [ "v0" ] ],
+    [ "led4:A", "relay1:NO", "green", [ "v0" ] ],
+    [ "relay1:GND", "gnd2:GND", "black", [ "h0" ] ],
+    [ "relay3:GND", "gnd2:GND", "black", [ "h22.37", "v41.22", "h-219.62" ] ],
+    [ "relay5:GND", "relay3:GND", "black", [ "h-4.49", "v39.96", "h-172.94" ] ],
+    [ "relay4:GND", "relay5:GND", "black", [ "h-7.27", "v41.55", "h-175.06" ] ],
+    [ "lcd1:GND", "relay4:GND", "black", [ "h-23.83", "v-106.68", "h57.16" ] ],
+    [ "lcd1:VCC", "relay4:VCC", "red", [ "h-52.41", "v-140.47", "h55.73", "v-48.59" ] ],
+    [ "lcd1:SDA", "uno:A4", "green", [ "h-22.4", "v180.13", "h-64.3", "v1.43" ] ],
+    [ "lcd1:SCL", "uno:A5", "green", [ "h-36.69", "v142.05", "h-42.87" ] ],
+    [ "relay1:IN", "uno:3", "green", [ "h-9.26", "v50.83", "h368.68" ] ],
+    [ "relay3:IN", "uno:4", "green", [ "h-24.71", "v43.65", "h210.06" ] ],
+    [ "relay5:IN", "uno:5", "green", [ "h0" ] ],
+    [ "relay4:IN", "uno:6", "green", [ "h-18.06", "v38.54", "h-144.33" ] ],
+    [ "dht1:VCC", "uno:5V", "red", [ "v14.65", "h-82.83", "v466.17", "h392.56" ] ],
+    [ "dht1:GND", "uno:GND.2", "black", [ "v46", "h-80.28", "v403.46", "h365.3" ] ],
+    [ "dht1:SDA", "uno:8", "green", [ "v39.19", "h-70.52", "v130.85", "h376.2" ] ]
+  ],
+  "dependencies": {}
+}
